@@ -1,0 +1,58 @@
+diff a/protractor.conf.js b/protractor.conf.js	(rejected hunks)
+@@ -1,26 +1,35 @@
+ var baseUrl = 'http://www.thetestroom.com/jswebapp/';
+ 
+ exports.config = {
+-  allScriptsTimeout: 31000,
+-  getPageTimeout: 25000,
+-  framework: 'jasmine', // 'jasmine' by default will use the latest jasmine framework
+-  jasmineNodeOpts: {
+-    defaultTimeoutInterval: 2500000
+-  },
+-  baseUrl: baseUrl,
+-  specs: [
+-    './Tests/ZooAdoption.spec.js'
+-  ],
+-  capabilities: {
+-    browserName: 'chrome',
++    seleniumAddress: 'http://127.0.0.1:4444/wd/hub',
++    allScriptsTimeout: 31000,
++    getPageTimeout: 25000,
++    framework: 'custom',
++    frameworkPath: require.resolve('protractor-cucumber-framework'),
+ 
+-    chromeOptions: {
+-      // args: ['--headless', '--disable-gpu', '--window-size=1920,1080']
++    baseUrl: baseUrl,
++    specs: [
++        // './Tests/ZooAdoption.spec.js'
++        'features/*.feature'
++    ],
++    capabilities: {
++        browserName: 'chrome',
++        chromeOptions: {
++            // args: ['--headless', '--disable-gpu', '--window-size=1920,1080']
++        }
++    },
++    directConnect: true,
++
++    cucumberOpts: {
++        require: 'features/step_definitions/stepDefinitions.js',
++        tags: false,
++        format: 'pretty',
++        profile: false,
++        'no-source': true
++    },
++
++    onPrepare: function () {
++        browser.driver.get(baseUrl);
++        browser.driver.manage().window().maximize();
+     }
+-  },
+-  directConnect: true,
+-  onPrepare: function () {
+-    browser.driver.get(baseUrl);
+-    browser.driver.manage().window().maximize();
+-  }
+ };
+\ No newline at end of file
