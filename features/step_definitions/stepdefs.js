@@ -42,45 +42,36 @@ defineSupportCode(function ({ Given, Then, When, And, Before }) {
     //     });
     // });
 
-    Given('I go to the website {string}', function (string, callback) {
-        browser.get(string)
-            .then(callback);
+    Given('I go to the website {string}', function (string) {
+        browser.get(string);
     });
 
-    // ?When I type in my name "Stefan" in the empty input field
-    When('I type in my name {string} in the empty input field', function (string, callback) {
-        IndexPage.nameInput.sendKeys(string)
-            .then(callback);
-    });
 
-    // ?When I click the CONTINUE button
+    When('I type in my name {string} in the empty input field', function (string) {
+        IndexPage.nameInput.sendKeys(string);
+    });
     When('I click the CONTINUE button', function () {
         continueButton.click();
     });
-
-    // ?When I click the BACK TO HOME button
     When('I click the BACK TO HOME button', function () {
         ConfirmPage.backToHomeButton.click();
     });
-
-    // ?When I select "Nemo the Fish"
     When('I select Nemo the Fish', function () {
         AnimalselectionPage.nemoTheFishOption.click();
     });
+    When('I select Simba the Lion', function () {
+        AnimalselectionPage.simbaTheLionOption.click();
+    });
 
-    // ?Then I should see my name "Stefan" displayed below the text enter field
+
     Then('I should see my name {string} displayed below the text enter field', function (string) {
         // Needed cause the execution seems to be to fast for the expect statement to reach
         browser.sleep(1000);
         expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
     });
-
-    // ?Then I should land on the "confirm" page
     Then('I should land on the {string} page', function (string) {
         expectUrlToContain(string);
     });
-
-    // ?And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
     Then('I should have the confirmation {string}', function (string) {
         expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
     });

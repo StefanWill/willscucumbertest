@@ -157,8 +157,9 @@ Feature: Animal adoption
         When I select Nemo the Fish
         And I click the CONTINUE button
         Then I should land on the "confirm" page
+        And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
 
-    Scenario: Typing in your name that gets displayed and adopt Nemo the Fish
+    Scenario: Typing in your name that gets displayed and adopt Nemo the Fish (Just Background steps get performed)
         # When I type in my name "Stefan" in the empty input field
         # Then I should see my name "Stefan" displayed below the text enter field
         # When I click the CONTINUE button
@@ -168,7 +169,7 @@ Feature: Animal adoption
         # Then I should land on the "confirm" page
         # And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
 
-    Scenario: Nemo the Fish and adopt another animal like Simba the Lion
+    Scenario: Adopt Nemo the Fish and adopt another animal like Simba the Lion
         # When I type in my name "Stefan" in the empty input field
         # Then I should see my name "Stefan" displayed below the text enter field
         # When I click the CONTINUE button
@@ -179,3 +180,10 @@ Feature: Animal adoption
         # And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
         When I click the BACK TO HOME button
         Then I should land on the "index" page
+        When I type in my name "Stefan" in the empty input field
+        Then I should see my name "Stefan" displayed below the text enter field
+        When I click the CONTINUE button
+        Then I should land on the "animalselection" page
+        When I select Simba the Lion
+        And I click the CONTINUE button
+        Then I should land on the "confirm" page

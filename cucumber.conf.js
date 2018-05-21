@@ -23,11 +23,14 @@ exports.config = {
     directConnect: true,
 
     cucumberOpts: {
-        require: 'features/step_definitions/stepDefinitions.js',
+        require: [
+            'features/step_definitions/stepDefinitions.js'
+        ],
         tags: false,
         format: 'json:.tmp/results.json',
         profile: false,
-        'no-source': true
+        'no-source': true,
+        keepAlive: false
     },
 
     plugins: [{
