@@ -23,7 +23,7 @@ $ ./node_modules/.bin/cucumber-js
 
 # Prerequisites
 
-**Following programs have to be installed to make the project work (see installation details after you have cloned the project successfully):**
+**Following programs have to be installed to make the project work:**
 
 * Node.js,
 * Java Development Kit.
@@ -59,7 +59,7 @@ cd C:\Temp\cucumbertest
 webdriver-manager update --ignore_ssl
 ```
 ```
-robocopy C:\Users\%username%\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium C:\Temp\cucumbertest\node_modules\protractor\node_modules\protractor\node_modules\webdriver-manager\selenium
+robocopy C:\Users\%username%\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium C:\Temp\willscucumbertest\node_modules\protractor\node_modules\protractor\node_modules\webdriver-manager\selenium
 ```
 ```
 webdriver-manager start
@@ -67,7 +67,7 @@ webdriver-manager start
 
 ## Install the needed packages for the project
 ```
-C:\Temp\cucumbertest\> npm install
+C:\Temp\willscucumbertest> npm install
 ```
 
 # Run the testsY
@@ -75,23 +75,23 @@ You will need to start the Selenium Server first.
 In a separate terminal tab, run the following:
 
 ```
-C:\Temp\cucumbertest\> webdriver-manager update --ignore_ssl
+C:\Temp\willscucumbertest> webdriver-manager update --ignore_ssl
 ```
 
 Then run webdriver-manager start to start up the server:
 ```
-C:\Temp\cucumbertest\> webdriver-manager start
+C:\Temp\willscucumbertest> webdriver-manager start
 ```
 
 To execute the cucumber tests, use following command in a new terminal tab:
 ```
-C:\Temp\cucumbertest\> protractor cucumber.conf.js
+C:\Temp\willscucumbertest> protractor cucumber.conf.js
 
 ```
 
 If you want to see the protractor tests that I wrote in parallel, since I know it better than cucumber, use following command in a new terminal tab to run the ZooAdoption.spec test:
 ```
-C:\Temp\cucumbertest\> protractor protractor.conf.js
+C:\Temp\willscucumbertest> protractor protractor.conf.js
 ```
 
 
@@ -125,11 +125,11 @@ Due to the fact that I don't host Jenkins, please go through following steps tha
 ```
 5. In the section **Build Verfahren** - select **"Windows Batch-Datei ausführen"** and paste the following:
 ```
-C:\Temp\cucumbertest\executeCucumber.bat
+C:\Temp\willscucumbertest\executeCucumber.bat
 ```
 6. For the section **Post-Build-Aktionen**, select in the **"Post-Build-Aktionen"**-dropdown the option **"Cucumber reports"**
 7. Click the **"Erweitert"**-Button in the **Post-Build-Aktionen**-section and give it the following dates for the fields:
-- **Json Reports Path:** C:\Temp\cucumbertest\.tmp
+- **Json Reports Path:** C:\Temp\willscucumbertest\.tmp
 - **File Include Pattern:** results.json
 - Leave the rest as it is
 

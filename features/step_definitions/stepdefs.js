@@ -1,91 +1,146 @@
+// const assert = require('assert');
+// const {
+//     Given,
+//     When,
+//     Then,
+//     And
+// } = require('cucumber');
+
+// const webdriver = require('selenium-webdriver');
+// const browser = new webdriver.Builder()
+//     .usingServer()
+//     .withCapabilities({ 'browserName': 'chrome' })
+//     .build();
+
+// browser.get('http://en.wikipedia.org/wiki/Wiki');
+// browser.findElements(webdriver.By.css('[href^="/wiki/"]'))
+//     .then(function (links) {
+//         assert.equal(19, links.length); // Made up number
+//         browser.quit();
+//     });
+
+
+// The defineSupportCode hook is Cucumber.js’s way of allowing you to provide code that it will use for a variety of different situations.
+const defineSupportCode = require('cucumber').defineSupportCode;
 const assert = require('assert');
-const {
-    Given,
-    When,
-    Then,
-    And,
-    But
-} = require('cucumber');
 
-// Chai configurations
-var chai = require('chai');
-var chaiAsPromised = require('chai-as-promised');
-var chaiURL = require('chai-url');
+defineSupportCode(function ({ Given, Then, When }) {
+    let answer = 0;
 
-chai.use(chaiAsPromised);
-chai.use(chaiURL);
-
-var expect = chai.expect;
-
-// Configuration requirements
-var env = require('./../../environment.js');
-var baseUrl = env.serverBaseUrl;
-
-// Page Objects
-var IndexPage = require('./../../PageObjects/Index/index.pageObject.js');
-var AnimalselectionPage = require('./../../PageObjects/Animalselection/animalselection.pageObject.js');
-var ConfirmPage = require('./../../PageObjects/Confirm/confirm.pageObject.js');
-
-// Common elements that can be found on different pages 
-var continueButton = element(by.id('continue_button'));
-var backToHomeButton = element(by.id('back_button'));
-
-// Common functions
-function expectUrlToContain(string) {
-    if (typeof string === 'string') {
-        expect(baseUrl + string + '.html').to.have.path('/jswebapp/' + string + '.html');
-    }
-}
-
-// 1) Scenario: Typing in your name that gets displayed and adopt Nemo the Fish
-// ==========================================================================
-
-// ?Given I go to the website "http://www.thetestroom.com/jswebapp/index.html"
-Given('I go to the website {string}', function (string, callback) {
-    browser.get(string)
-        .then(callback);
+    Given('I start with {int}', function (input) {
+        answer = input;
+    });
+    When('I add {int}', function (input) {
+        answer = answer + input;
+    });
+    When('I multiply by {int}', function (input) {
+        answer = answer * input;
+    });
+    Then('I end up with {int}', function (input) {
+        assert.equal(answer, input);
+    });
 });
 
-// ?When I type in my name "Stefan" in the empty input field
-When('I type in my name {string} in the empty input field', function (string, callback) {
-    IndexPage.nameInput.sendKeys(string)
-        .then(callback);
-});
 
-// ?Then I should see my name "Stefan" displayed below the text enter field
-Then('I should see my name {string} displayed below the text enter field', function (string) {
-    expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
-});
+// // Chai configurations
+// var chai = require('chai');
+// var chaiAsPromised = require('chai-as-promised');
+// var chaiURL = require('chai-url');
 
-// ?When I click the CONTINUE button
-When('I click the CONTINUE button', function () {
-    continueButton.click();
-});
+// chai.use(chaiAsPromised);
+// chai.use(chaiURL);
 
-// ?Then I should see the "animalselection" page
-Then('I should land on the {string} page', function (string) {
-    expectUrlToContain(string);
-});
+// var expect = chai.expect;
 
-// ?When I select "Nemo the Fish"
-When('I select Nemo the Fish', function () {
-    AnimalselectionPage.nemoTheFishOption.click();
-});
+// // 1) Scenario: 1 * 0 # features\animaladoption.feature: 56
+//     // ?Given I start with 1
+// Given('I start with {int}', function (int) {
+//     // Write code here that turns the phrase above into concrete actions
+//     return 'pending';
+// });
 
-// ?And I click the CONTINUE button again
-When('I click the CONTINUE button again', function () {
-    continueButton.click();
-});
+// //    ?When I multiply by 0
+// When('I multiply by {int}', function (int) {
+//     // Write code here that turns the phrase above into concrete actions
+//     return 'pending';
+// });
 
-// ?Then I should land on the "confirm" page
-Then('I should see the {string} page', function (string) {
-    expectUrlToContain(string);
-});
+// //    ?Then I end up with 0
+// Then('I end up with {int}', function (int) {
+//     // Write code here that turns the phrase above into concrete actions
+//     return 'pending';
+// });
 
-// ?And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
-Then('I should have the confirmation {string}', function (string) {
-    expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
-});
+
+// // Configuration requirements
+// var env = require('./../../environment.js');
+// var baseUrl = env.serverBaseUrl;
+
+// // Page Objects
+// var IndexPage = require('./../../PageObjects/Index/index.pageObject.js');
+// var AnimalselectionPage = require('./../../PageObjects/Animalselection/animalselection.pageObject.js');
+// var ConfirmPage = require('./../../PageObjects/Confirm/confirm.pageObject.js');
+
+// // Common elements that can be found on different pages 
+// var continueButton = element(by.id('continue_button'));
+// var backToHomeButton = element(by.id('back_button'));
+
+// // Common functions
+// function expectUrlToContain(string) {
+//     if (typeof string === 'string') {
+//         expect(baseUrl + string + '.html').to.have.path('/jswebapp/' + string + '.html');
+//     }
+// }
+
+// // 1) Scenario: Typing in your name that gets displayed and adopt Nemo the Fish
+// // ==========================================================================
+
+// // ?Given I go to the website "http://www.thetestroom.com/jswebapp/index.html"
+// Given('I go to the website {string}', function (string, callback) {
+//     browser.get(string)
+//         .then(callback);
+// });
+
+// // ?When I type in my name "Stefan" in the empty input field
+// When('I type in my name {string} in the empty input field', function (string, callback) {
+//     IndexPage.nameInput.sendKeys(string)
+//         .then(callback);
+// });
+
+// // ?Then I should see my name "Stefan" displayed below the text enter field
+// Then('I should see my name {string} displayed below the text enter field', function (string) {
+//     expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
+// });
+
+// // ?When I click the CONTINUE button
+// When('I click the CONTINUE button', function () {
+//     continueButton.click();
+// });
+
+// // ?Then I should see the "animalselection" page
+// Then('I should land on the {string} page', function (string) {
+//     expectUrlToContain(string);
+// });
+
+// // ?When I select "Nemo the Fish"
+// When('I select Nemo the Fish', function () {
+//     AnimalselectionPage.nemoTheFishOption.click();
+// });
+
+// // ?And I click the CONTINUE button again
+// When('I click the CONTINUE button again', function () {
+//     continueButton.click();
+// });
+
+// // ?Then I should land on the "confirm" page
+// Then('I should see the {string} page', function (string) {
+//     expectUrlToContain(string);
+// });
+
+// // ?And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
+// Then('I should have the confirmation {string}', function (string) {
+//     expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
+// });
 
 
 // // 2) Scenario: Adopting an animal should not be possible if I don't type in a name in the first place
