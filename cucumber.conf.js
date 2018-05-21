@@ -38,7 +38,8 @@ exports.config = {
         options: {
             automaticallyGenerateReport: true,
             // removeExistingJsonReportFile: true
-        }
+        },
+        package: require.resolve('selenium-webdriver')
     }]
 
 };

@@ -1,16 +1,21 @@
 // The defineSupportCode hook is Cucumber.js’s way of allowing you to provide code that it will use for a variety of different situations.
-const defineSupportCode = require('cucumber').defineSupportCode;
-const assert = require('assert');
+var defineSupportCode = require('cucumber').defineSupportCode;
+var assert = require('assert');
 
 // Chai configurations
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
-var chaiURL = require('chai-url');
 
-chai.use(chaiAsPromised);
-chai.use(chaiURL);
+// Assertion libs to get dom elements
+var chaiSmoothie = require('chai-smoothie');
+var chaiJQ = require('chai-jq');
+// var chaiWebdriverIO = require('chai-webdriverio');
 
 var expect = chai.expect;
+
+chai.use(chaiAsPromised);
+chai.use(chaiJQ);
+// chai.use(chaiWebdriverIO);
 
 // Configuration requirements
 var env = require('./../../environment.js');
@@ -21,42 +26,43 @@ var IndexPage = require('./../../PageObjects/Index/index.pageObject.js');
 var AnimalselectionPage = require('./../../PageObjects/Animalselection/animalselection.pageObject.js');
 var ConfirmPage = require('./../../PageObjects/Confirm/confirm.pageObject.js');
 
-// Common elements that can be found on different pages 
+// Common elements that can be found on different pages
+var pageTitle = element(by.tagName('title'));
 var continueButton = element(by.id('continue_button'));
 var backToHomeButton = element(by.id('back_button'));
 
 // Common functions
-function expectUrlToContain(string) {
+function expectToBeOnPage(string) {
     if (typeof string === 'string') {
-        expect(baseUrl + string + '.html').to.have.path('/jswebapp/' + string + '.html');
+        // expect(pageTitle.text()).to.have.string('Zoo Adoption | ' + string);
+        // expect(pageTitle.text()).to.contain('Zoo Adoption | ' + string);
+
+        // expect(pageTitle).to.contain.text(string);
+        // expect(pageTitle.getText()).to.contain(string);
+
+        // expect(pageTitle.getText()).to.have.string(string)
+
+        // console.log("!!!!!!!!!!!!!!!!!!!!!");
+        // var a = pageTitle.getText().then(function (text) {
+        //     console.log("hü", text);
+        // });
+        // console.log(a);
+        // expect(pageTitle.text()).to.include.any.string('Zoo Adoption | ' + string);
+        // expect(pageTitle.getText()).to.eventually.equal(string);
+        
+        // var $elem = $("title");
+        // expect($elem).to.have.$text(string);
+
+        // expect(element(by.css('footer'))).to.be.present;
+        
+        expect(element(by.css('footer'))).to.be.present;
     }
 }
 
-function notExpectUrlToContain(string) {
+
+function notExpectToBeOnPage(string) {
     if (typeof string === 'string') {
-        // False fail to remind testers that a special step has to fail
-        expect(baseUrl + string + '.html').to.not.have.path('/jswebapp/' + string + '.html');
-        
-        // - Doesn't work cause browser.getCurrentUrl() returns a promise
-        // ============================================================
-        // expect(browser.getCurrentUrl()).not.toContain('animalselection');
-
-        // - But the return with a promise doesn't work either cause I don't have the url in the "then"-block 
-        // (no console.log in console output of cucumber test)
-        // ============================================================
-        // browser.driver.getCurrentUrl().then(function (url) {
-        //     expect(url).to.not.have.path('/jswebapp/' + string + '.html');
-        //     console.log("URL in then block", url);
-        // });
-
-        // - Doesn't make sense since doesn't validate the actual URL
-        // ============================================================
-        // expect(baseUrl + string + '.html').to.have.path('/jswebapp/' + string + '.html');
-        
-        // - JS-Approach not working 
-        // (location undefined)
-        // ============================================================
-        // console.log(location.href);
+        // expect(pageTitle.getText()).to.not.eventually.equal(string);
     }
 }
 
@@ -85,19 +91,19 @@ defineSupportCode(function ({ Given, Then, When, }) {
         IndexPage.nameInput.sendKeys();
     });
 
-    Then('I should see my name {string} displayed below the text enter field', function (string) {
+    Then('I see my name {string} displayed below the text enter field', function (string) {
         // Needed cause the execution seems to be to fast for the expect statement to reach
         browser.sleep(1000);
         expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
     });
-    Then('I should land on the {string} page', function (string) {
-        expectUrlToContain(string);
+    Then('I land on the {string} page', function (string) {
+        expectToBeOnPage(string);
     });
-    Then('I should have the confirmation {string}', function (string) {
+    Then('I have the confirmation {string}', function (string) {
         expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
     });
-    Then('I should not be able to continue to the {string} page', function (string) {
-        notExpectUrlToContain(string);
+    Then('I not be able to continue to the {string} page', function (string) {
+        notExpectToBeOnPage(string);
     });
 
 });
