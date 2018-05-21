@@ -12,12 +12,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^7.1.1",
-    "chai-dom": "^1.8.0",
-    "chai-jq": "0.0.9",
-    "chai-jquery": "^2.0.0",
-    "chai-smoothie": "^0.3.2",
-    "chai-webdriver": "^1.2.0",
-    "chai-webdriverio": "^0.4.3",
+    "chai-url": "^1.0.4",
     "cucumber": "^4.2.1",
     "protractor": "^5.3.2",
     "protractor-cucumber-framework": "^5.0.0",

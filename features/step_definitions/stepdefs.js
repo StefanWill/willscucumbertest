@@ -1,22 +1,16 @@
 // The defineSupportCode hook is Cucumber.js’s way of allowing you to provide code that it will use for a variety of different situations.
-var defineSupportCode = require('cucumber').defineSupportCode;
-var assert = require('assert');
+const defineSupportCode = require('cucumber').defineSupportCode;
+const assert = require('assert');
 
 // Chai configurations
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
-
-// Assertion libs to get dom elements
-var chaiSmoothie = require('chai-smoothie');
-var chaiJQ = require('chai-jq');
-// var chaiWebdriverIO = require('chai-webdriverio');
-
-var expect = chai.expect;
+var chaiURL = require('chai-url');
 
 chai.use(chaiAsPromised);
-chai.use(chaiJQ);
-chai.use(chaiSmoothie);
-// chai.use(chaiWebdriverIO);
+chai.use(chaiURL);
+
+var expect = chai.expect;
 
 // Configuration requirements
 var env = require('./../../environment.js');
@@ -27,43 +21,21 @@ var IndexPage = require('./../../PageObjects/Index/index.pageObject.js');
 var AnimalselectionPage = require('./../../PageObjects/Animalselection/animalselection.pageObject.js');
 var ConfirmPage = require('./../../PageObjects/Confirm/confirm.pageObject.js');
 
-// Common elements that can be found on different pages
-var pageTitle = element(by.tagName('title'));
+// Common elements that can be found on different pages 
 var continueButton = element(by.id('continue_button'));
 var backToHomeButton = element(by.id('back_button'));
 
 // Common functions
-function expectToBeOnPage(string) {
+function expectUrlToContain(string) {
     if (typeof string === 'string') {
-        // expect(pageTitle.text()).to.have.string('Zoo Adoption | ' + string);
-        // expect(pageTitle.text()).to.contain('Zoo Adoption | ' + string);
-
-        // expect(pageTitle).to.contain.text(string);
-        // expect(pageTitle.getText()).to.contain(string);
-
-        // expect(pageTitle.getText()).to.have.string(string)
-
-        // console.log("!!!!!!!!!!!!!!!!!!!!!");
-        // var a = pageTitle.getText().then(function (text) {
-        //     console.log("hü", text);
-        // });
-        // console.log(a);
-        // expect(pageTitle.text()).to.include.any.string('Zoo Adoption | ' + string);
-        // expect(pageTitle.getText()).to.eventually.equal(string);
-        
-        // var $elem = $("title");
-        // expect($elem).to.have.$text(string);
-
-        // expect(element(by.css('footer'))).to.be.present;
-        
-        expect(element(by.css('title'))).to.be.present;
+        expect(baseUrl + string + '.html').to.have.path('/jswebapp/' + string + '.html');
     }
 }
 
-
-function notExpectToBeOnPage(string) {
+function notExpectUrlToContain(string) {
     if (typeof string === 'string') {
-        // expect(pageTitle.getText()).to.not.eventually.equal(string);
+        // False fail to remind testers that a special step has to fail
+        expect(baseUrl + string + '.html').to.not.have.path('/jswebapp/' + string + '.html');
     }
 }
 
@@ -98,13 +70,13 @@ defineSupportCode(function ({ Given, Then, When, }) {
         expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
     });
     Then('I land on the {string} page', function (string) {
-        expectToBeOnPage(string);
+        expectUrlToContain(string);
     });
     Then('I have the confirmation {string}', function (string) {
         expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
     });
-    Then('I not be able to continue to the {string} page', function (string) {
-        notExpectToBeOnPage(string);
+    Then('I am not able to continue to the {string} page', function (string) {
+        notExpectUrlToContain(string);
     });
 
 });

@@ -14,7 +14,7 @@ CALL node --version
 ECHO ******************************************************************************
 ECHO                   Execute Cucumber Tests
 ECHO ******************************************************************************
-CALL cd C:\Temp\cucumbertest\
+CALL cd C:\Temp\willscucumbertest
 CALL protractor cucumber.conf.js
 
 if not errorlevel 1 (

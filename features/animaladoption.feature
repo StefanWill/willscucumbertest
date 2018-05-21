@@ -9,23 +9,23 @@ Feature: Animal adoption
         When I type in my name "Stefan" in the empty input field
         Then I see my name "Stefan" displayed below the text enter field
         When I click the CONTINUE button
-        Then I land on the "Select your Animal" page
+        Then I land on the "animalselection" page
         When I select Nemo the Fish
         And I click the CONTINUE button
-        Then I land on the "Confirmation" page
+        Then I land on the "confirm" page
         And I have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
         When I click the BACK TO HOME button
-        Then I land on the "Home" page
+        Then I land on the "index" page
 
     Scenario: Adopt Nemo the Fish and adopt another animal like Simba the Lion
         When I type in my name "Stefan" in the empty input field
         And I click the CONTINUE button
-        Then I land on the "Select your Animal" page
+        Then I land on the "animalselection" page
         When I select Simba the Lion
         And I click the CONTINUE button
-        Then I land on the "Confirmation" page
+        Then I land on the "confirm" page
 
     Scenario: Adopting an animal not be possible if I don't type in a name in the first place
         When I don't type in a name in the empty input field
         And I click the CONTINUE button
-        Then I not be able to continue to the "Select your Animal" page
+        Then I am not able to continue to the "animalselection" page
