@@ -255,6 +255,12 @@ defineSupportCode(function ({ Given, Then, When }) {
     When('I multiply by {int}', function (input) {
         answer = answer * input;
     });
+    When('I add the following numbers:', function (table) {
+        answer = table.raw()
+            .map(row => row[0])
+            .map(v => parseInt(v))
+            .reduce((current, next) => current + next, answer);
+    });
     Then('I end up with {int}', function (input) {
         assert.equal(answer, input);
     });

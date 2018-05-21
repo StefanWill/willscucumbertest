@@ -135,7 +135,7 @@ C:\Temp\willscucumbertest\executeCucumber.bat
 
 
 # Useful links
+[BDD in JavaScript: Getting Started with Cucumber and Gherkin](https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/)
 [Protractor Style Guide](https://github.com/CarmenPopoviciu/protractor-styleguide)
 [Protractor cheatsheet](https://gist.github.com/javierarques/0c4c817d6c77b0877fda)
 [Protractor and Cucumber](https://semaphoreci.com/community/tutorials/getting-started-with-protractor-and-cucumber)
-[BDD in JavaScript: Getting Started with Cucumber and Gherkin](https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/)

@@ -101,6 +101,8 @@
 #         Then I end up with 4
 
 
+
+
 # Feature: Addition
 
 #     Background:
@@ -114,15 +116,28 @@
 #         When I add 1
 #         Then I end up with 2
 
-Feature: Multiplication
+# Feature: Multiplication
 
-    Scenario Outline: <a> * <b>
-        Given I start with <a>
-        When I multiply by <b>
-        Then I end up with <answer>
+#     Scenario Outline: <a> * <b>
+#         Given I start with <a>
+#         When I multiply by <b>
+#         Then I end up with <answer>
 
-        Examples:
-            | a | b | answer |
-            | 1 | 0 | 0      |
-            | 1 | 1 | 1      |
-            | 2 | 2 | 4      |
+#         Examples:
+#             | a | b | answer |
+#             | 1 | 0 | 0      |
+#             | 1 | 1 | 1      |
+#             | 2 | 2 | 4      |
+
+
+
+Feature: Addition
+
+    Scenario: Add numbers
+        Given I start with 0
+        When I add the following numbers:
+            | 1 |
+            | 2 |
+            | 3 |
+            | 4 |
+        Then I end up with 10
