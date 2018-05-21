@@ -71,19 +71,62 @@
 
 
 
-Feature: Multiplication
+# Feature: Addition
 
-    Scenario: 1 * 0
-        Given I start with 1
-        When I multiply by 0
-        Then I end up with 0
+#     Scenario: 1 + 0
+#         Given I start with 1
+#         When I add 0
+#         Then I end up with 1
 
-    Scenario: 1 * 1
+#     Scenario: 1 + 1
+#         Given I start with 1
+#         When I add 1
+#         Then I end up with 2
+
+# Feature: Multiplication
+
+#     Scenario: 1 * 0
+#         Given I start with 1
+#         When I multiply by 0
+#         Then I end up with 0
+
+#     Scenario: 1 * 1
+#         Given I start with 1
+#         When I multiply by 1
+#         Then I end up with 1
+
+#     Scenario: 2 + 2
+#         Given I start with 2
+#         When I multiply by 2
+#         Then I end up with 4
+
+
+Feature: Addition
+
+    Background:
         Given I start with 1
-        When I multiply by 1
+
+    Scenario: 1 + 0
+        When I add 0
         Then I end up with 1
 
-    Scenario: 2 + 2
-        Given I start with 2
-        When I multiply by 2
-        Then I end up with 4
+    Scenario: 1 + 1
+        When I add 1
+        Then I end up with 2
+
+# Feature: Multiplication
+
+#     Background:
+#         Given I start with 1
+
+#     Scenario: 1 * 0
+#         When I multiply by 0
+#         Then I end up with 0
+
+#     Scenario: 1 * 1
+#         When I multiply by 1
+#         Then I end up with 1
+
+    # Scenario: 1 + 4
+    #     When I multiply by 4
+    #     Then I end up with 4
