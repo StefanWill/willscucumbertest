@@ -15,6 +15,7 @@ var expect = chai.expect;
 
 chai.use(chaiAsPromised);
 chai.use(chaiJQ);
+chai.use(chaiSmoothie);
 // chai.use(chaiWebdriverIO);
 
 // Configuration requirements
@@ -55,7 +56,7 @@ function expectToBeOnPage(string) {
 
         // expect(element(by.css('footer'))).to.be.present;
         
-        expect(element(by.css('footer'))).to.be.present;
+        expect(element(by.css('title'))).to.be.present;
     }
 }
 
