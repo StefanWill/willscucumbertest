@@ -32,20 +32,39 @@ function expectUrlToContain(string) {
     }
 }
 
-defineSupportCode(function ({ Given, Then, When, Before }) {
-    let answer;
+function notExpectUrlToContain(string) {
+    if (typeof string === 'string') {
+        // False fail to remind testers that a special step has to fail
+        expect(baseUrl + string + '.html').to.not.have.path('/jswebapp/' + string + '.html');
+        
+        // - Doesn't work cause browser.getCurrentUrl() returns a promise
+        // ============================================================
+        // expect(browser.getCurrentUrl()).not.toContain('animalselection');
 
-    // Before(function () {
-    //     Given('I go to the website {string}', function (string, callback) {
-    //         browser.get(string)
-    //             .then(callback);
-    //     });
-    // });
+        // - But the return with a promise doesn't work either cause I don't have the url in the "then"-block 
+        // (no console.log in console output of cucumber test)
+        // ============================================================
+        // browser.driver.getCurrentUrl().then(function (url) {
+        //     expect(url).to.not.have.path('/jswebapp/' + string + '.html');
+        //     console.log("URL in then block", url);
+        // });
+
+        // - Doesn't make sense since doesn't validate the actual URL
+        // ============================================================
+        // expect(baseUrl + string + '.html').to.have.path('/jswebapp/' + string + '.html');
+        
+        // - JS-Approach not working 
+        // (location undefined)
+        // ============================================================
+        // console.log(location.href);
+    }
+}
+
+defineSupportCode(function ({ Given, Then, When, }) {
 
     Given('I go to the website {string}', function (string) {
         browser.get(string);
     });
-
 
     When('I type in my name {string} in the empty input field', function (string) {
         IndexPage.nameInput.sendKeys(string);
@@ -66,8 +85,6 @@ defineSupportCode(function ({ Given, Then, When, Before }) {
         IndexPage.nameInput.sendKeys();
     });
 
-
-
     Then('I should see my name {string} displayed below the text enter field', function (string) {
         // Needed cause the execution seems to be to fast for the expect statement to reach
         browser.sleep(1000);
@@ -79,8 +96,8 @@ defineSupportCode(function ({ Given, Then, When, Before }) {
     Then('I should have the confirmation {string}', function (string) {
         expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
     });
-    // Then('I should not be able to continue to the {string} page by clicking the CONTINUE button', function (string) {
-    // });
-
+    Then('I should not be able to continue to the {string} page', function (string) {
+        notExpectUrlToContain(string);
+    });
 
 });

@@ -35,7 +35,7 @@ describe('ZooAdoption', function () {
 
     // If there was an ng-if statement implemented on the continue-button this test won't fail
     it('should not be possible to adopt nemo the fish if I dont type in a name in the first place', function () {
-        IndexPage.nameInput.sendKeys('');
+        IndexPage.nameInput.sendKeys();
         continueButton.click();
         expect(browser.getCurrentUrl()).not.toContain('animalselection');
     });
