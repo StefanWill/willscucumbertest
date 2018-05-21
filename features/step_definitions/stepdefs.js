@@ -32,8 +32,15 @@ function expectUrlToContain(string) {
     }
 }
 
-defineSupportCode(function ({ Given, Then, When, Before }) {
+defineSupportCode(function ({ Given, Then, When, And, Before }) {
     let answer;
+
+    // Before(function () {
+    //     Given('I go to the website {string}', function (string, callback) {
+    //         browser.get(string)
+    //             .then(callback);
+    //     });
+    // });
 
     Given('I go to the website {string}', function (string, callback) {
         browser.get(string)
@@ -46,19 +53,14 @@ defineSupportCode(function ({ Given, Then, When, Before }) {
             .then(callback);
     });
 
-    // ?Then I should see my name "Stefan" displayed below the text enter field
-    Then('I should see my name {string} displayed below the text enter field', function (string) {
-        expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
-    });
-
     // ?When I click the CONTINUE button
     When('I click the CONTINUE button', function () {
         continueButton.click();
     });
 
-    // ?Then I should see the "animalselection" page
-    Then('I should land on the {string} page', function (string) {
-        expectUrlToContain(string);
+    // ?When I click the BACK TO HOME button
+    When('I click the BACK TO HOME button', function () {
+        ConfirmPage.backToHomeButton.click();
     });
 
     // ?When I select "Nemo the Fish"
@@ -66,13 +68,15 @@ defineSupportCode(function ({ Given, Then, When, Before }) {
         AnimalselectionPage.nemoTheFishOption.click();
     });
 
-    // ?And I click the CONTINUE button again
-    When('I click the CONTINUE button again', function () {
-        continueButton.click();
+    // ?Then I should see my name "Stefan" displayed below the text enter field
+    Then('I should see my name {string} displayed below the text enter field', function (string) {
+        // Needed cause the execution seems to be to fast for the expect statement to reach
+        browser.sleep(1000);
+        expect(IndexPage.nameOutput.getText()).to.eventually.equal(string);
     });
 
     // ?Then I should land on the "confirm" page
-    Then('I should see the {string} page', function (string) {
+    Then('I should land on the {string} page', function (string) {
         expectUrlToContain(string);
     });
 
@@ -80,4 +84,5 @@ defineSupportCode(function ({ Given, Then, When, Before }) {
     Then('I should have the confirmation {string}', function (string) {
         expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
     });
+
 });

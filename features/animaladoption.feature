@@ -150,13 +150,32 @@ Feature: Animal adoption
 
     Background:
         Given I go to the website "http://www.thetestroom.com/jswebapp/index.html"
-
-    Scenario: Typing in your name that gets displayed and adopt Nemo the Fish
-        When I type in my name "name" in the empty input field
-        Then I should see my name "output" displayed below the text enter field
+        When I type in my name "Stefan" in the empty input field
+        Then I should see my name "Stefan" displayed below the text enter field
         When I click the CONTINUE button
         Then I should land on the "animalselection" page
         When I select Nemo the Fish
-        And I click the CONTINUE button again
-        Then I should see the "confirm" page
-        And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
+        And I click the CONTINUE button
+        Then I should land on the "confirm" page
+
+    Scenario: Typing in your name that gets displayed and adopt Nemo the Fish
+        # When I type in my name "Stefan" in the empty input field
+        # Then I should see my name "Stefan" displayed below the text enter field
+        # When I click the CONTINUE button
+        # Then I should land on the "animalselection" page
+        # When I select Nemo the Fish
+        # And I click the CONTINUE button again
+        # Then I should land on the "confirm" page
+        # And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
+
+    Scenario: Nemo the Fish and adopt another animal like Simba the Lion
+        # When I type in my name "Stefan" in the empty input field
+        # Then I should see my name "Stefan" displayed below the text enter field
+        # When I click the CONTINUE button
+        # Then I should land on the "animalselection" page
+        # When I select Nemo the Fish
+        # And I click the CONTINUE button again
+        # Then I should land on the "confirm" page
+        # And I should have the confirmation "Thank you for your selection. Your animal adoption papers will be sent to you shortly with a lovely card from your selected animal."
+        When I click the BACK TO HOME button
+        Then I should land on the "index" page
