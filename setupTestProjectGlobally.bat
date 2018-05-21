@@ -17,6 +17,14 @@ ECHO ***************************************************************************
 CALL npm install -g protractor
 
 ECHO ******************************************************************************
+ECHO           Setup the project
+ECHO ******************************************************************************
+CALL cd C:\
+CALL mkdir "Temp"
+CALL cd Temp
+CALL git clone https://github.com/StefanWill/willscucumbertest.git
+
+ECHO ******************************************************************************
 ECHO                      Install packages in the project
 ECHO ******************************************************************************
 CALL cd C:\Temp\willscucumbertest

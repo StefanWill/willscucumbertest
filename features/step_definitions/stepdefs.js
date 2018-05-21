@@ -32,7 +32,7 @@ function expectUrlToContain(string) {
     }
 }
 
-defineSupportCode(function ({ Given, Then, When, And, Before }) {
+defineSupportCode(function ({ Given, Then, When, Before }) {
     let answer;
 
     // Before(function () {
@@ -62,6 +62,10 @@ defineSupportCode(function ({ Given, Then, When, And, Before }) {
     When('I select Simba the Lion', function () {
         AnimalselectionPage.simbaTheLionOption.click();
     });
+    When('I don\'t type in a name in the empty input field', function () {
+        IndexPage.nameInput.sendKeys();
+    });
+
 
 
     Then('I should see my name {string} displayed below the text enter field', function (string) {
@@ -75,5 +79,8 @@ defineSupportCode(function ({ Given, Then, When, And, Before }) {
     Then('I should have the confirmation {string}', function (string) {
         expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
     });
+    // Then('I should not be able to continue to the {string} page by clicking the CONTINUE button', function (string) {
+    // });
+
 
 });

@@ -12,15 +12,6 @@
 * Page Objects-folder may seem as unnecessary structure for this task but is a good practice in case the project should grow
 
 
-# Development approach in cucumber
-1. Write the feature and save it as .feature-file in the feature-folder
-2. Execute the following command in order to get the snippets to paste into the **stepdefs.js**-file in the step_definitions-folder
-```
-$ ./node_modules/.bin/cucumber-js
-```
-3. In the **stepdefs.js**-file in the step_definitions-folder, the **.then(callback)-function** let's Cucumber know it's time to move on to the next step
-
-
 # Prerequisites
 
 **Following programs have to be installed to make the project work:**
@@ -28,7 +19,7 @@ $ ./node_modules/.bin/cucumber-js
 * Node.js,
 * Java Development Kit.
 
-Alternatively you can run the **setupTestProjectGlobally.bat**-script that does the following steps for you.
+Alternatively you can run the **setupTestProjectGlobally.bat**-script that does the following steps for you after you have checked out the repository
 
 In order to run Protractor, you will need to first start the Selenium Server. Protractor includes a webdriver-manager tool that starts up your server. In a separate terminal tab, run the webdriver-manager update command. This downloads the necessary selenium server and chromedriver components. Then run webdriver-manager start to start up the server.
 
@@ -40,7 +31,7 @@ Then you can use protractor protractor.conf.js in the terminal to run the test s
 $ npm install -g protractor
 ```
 
-## Setup the project folder
+## Setup the project
 ```
 cd C:\
 ```
@@ -48,21 +39,21 @@ cd C:\
 mkdir "Temp"
 ```
 ```
-mkdir "cucumbertest"
+cd Temp
 ```
 ```
-cd C:\Temp\cucumbertest
+git clone https://github.com/StefanWill/willscucumbertest.git
 ```
 
 ## Update webdriver-manager globally
 ```
-webdriver-manager update --ignore_ssl
+$ webdriver-manager update --ignore_ssl
 ```
 ```
-robocopy C:\Users\%username%\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium C:\Temp\willscucumbertest\node_modules\protractor\node_modules\protractor\node_modules\webdriver-manager\selenium
+$ robocopy C:\Users\%username%\AppData\Roaming\npm\node_modules\protractor\node_modules\webdriver-manager\selenium C:\Temp\willscucumbertest\node_modules\protractor\node_modules\protractor\node_modules\webdriver-manager\selenium
 ```
 ```
-webdriver-manager start
+$ webdriver-manager start
 ```
 
 ## Install the needed packages for the project
