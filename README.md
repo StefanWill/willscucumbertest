@@ -126,8 +126,8 @@ C:\Temp\willscucumbertest\executeCucumber.bat
 
 
 # Useful links
-[Official cucumber-js github documentation](https://github.com/cucumber/cucumber-js)
-[BDD in JavaScript: Getting Started with Cucumber and Gherkin](https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/)
-[Protractor Style Guide](https://github.com/CarmenPopoviciu/protractor-styleguide)
-[Protractor cheatsheet](https://gist.github.com/javierarques/0c4c817d6c77b0877fda)
-[Protractor and Cucumber](https://semaphoreci.com/community/tutorials/getting-started-with-protractor-and-cucumber)
+* [Official cucumber-js github documentation](https://github.com/cucumber/cucumber-js)
+* [BDD in JavaScript: Getting Started with Cucumber and Gherkin](https://www.sitepoint.com/bdd-javascript-cucumber-gherkin/)
+* [Protractor Style Guide](https://github.com/CarmenPopoviciu/protractor-styleguide)
+* [Protractor cheatsheet](https://gist.github.com/javierarques/0c4c817d6c77b0877fda)
+* [Protractor and Cucumber](https://semaphoreci.com/community/tutorials/getting-started-with-protractor-and-cucumber)
