@@ -101,32 +101,28 @@
 #         Then I end up with 4
 
 
-Feature: Addition
-
-    Background:
-        Given I start with 1
-
-    Scenario: 1 + 0
-        When I add 0
-        Then I end up with 1
-
-    Scenario: 1 + 1
-        When I add 1
-        Then I end up with 2
-
-# Feature: Multiplication
+# Feature: Addition
 
 #     Background:
 #         Given I start with 1
 
-#     Scenario: 1 * 0
-#         When I multiply by 0
-#         Then I end up with 0
-
-#     Scenario: 1 * 1
-#         When I multiply by 1
+#     Scenario: 1 + 0
+#         When I add 0
 #         Then I end up with 1
 
-    # Scenario: 1 + 4
-    #     When I multiply by 4
-    #     Then I end up with 4
+#     Scenario: 1 + 1
+#         When I add 1
+#         Then I end up with 2
+
+Feature: Multiplication
+
+    Scenario Outline: <a> * <b>
+        Given I start with <a>
+        When I multiply by <b>
+        Then I end up with <answer>
+
+        Examples:
+            | a | b | answer |
+            | 1 | 0 | 0      |
+            | 1 | 1 | 1      |
+            | 2 | 2 | 4      |

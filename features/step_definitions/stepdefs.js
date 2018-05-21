@@ -6,47 +6,6 @@
 //     And
 // } = require('cucumber');
 
-// const webdriver = require('selenium-webdriver');
-// const browser = new webdriver.Builder()
-//     .usingServer()
-//     .withCapabilities({ 'browserName': 'chrome' })
-//     .build();
-
-// browser.get('http://en.wikipedia.org/wiki/Wiki');
-// browser.findElements(webdriver.By.css('[href^="/wiki/"]'))
-//     .then(function (links) {
-//         assert.equal(19, links.length); // Made up number
-//         browser.quit();
-//     });
-
-
-// The defineSupportCode hook is Cucumber.js’s way of allowing you to provide code that it will use for a variety of different situations.
-const defineSupportCode = require('cucumber').defineSupportCode;
-const assert = require('assert');
-
-defineSupportCode(function ({ Given, Then, When }) {
-    let answer = 0;
-
-    Given('I start with {int}', function (input) {
-        answer = input;
-    });
-    When('I add {int}', function (input) {
-        answer = answer + input;
-    });
-    When('I multiply by {int}', function (input) {
-        answer = answer * input;
-    });
-    Then('I end up with {int}', function (input) {
-        assert.equal(answer, input);
-    });
-});
-
-
-
-
-
-
-
 // // Chai configurations
 // var chai = require('chai');
 // var chaiAsPromised = require('chai-as-promised');
@@ -264,3 +223,39 @@ defineSupportCode(function ({ Given, Then, When }) {
 // Then('I should once again have the confirmation {string}', function (string) {
 //     expect(ConfirmPage.confirmationMessageBox.getText()).to.eventually.equal(string);
 // });
+
+
+// const webdriver = require('selenium-webdriver');
+// const browser = new webdriver.Builder()
+//     .usingServer()
+//     .withCapabilities({ 'browserName': 'chrome' })
+//     .build();
+
+// browser.get('http://en.wikipedia.org/wiki/Wiki');
+// browser.findElements(webdriver.By.css('[href^="/wiki/"]'))
+//     .then(function (links) {
+//         assert.equal(19, links.length); // Made up number
+//         browser.quit();
+//     });
+
+
+// The defineSupportCode hook is Cucumber.js’s way of allowing you to provide code that it will use for a variety of different situations.
+const defineSupportCode = require('cucumber').defineSupportCode;
+const assert = require('assert');
+
+defineSupportCode(function ({ Given, Then, When }) {
+    let answer = 0;
+
+    Given('I start with {int}', function (input) {
+        answer = input;
+    });
+    When('I add {int}', function (input) {
+        answer = answer + input;
+    });
+    When('I multiply by {int}', function (input) {
+        answer = answer * input;
+    });
+    Then('I end up with {int}', function (input) {
+        assert.equal(answer, input);
+    });
+});
