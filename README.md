@@ -61,7 +61,7 @@ $ webdriver-manager start
 C:\Temp\willscucumbertest> npm install
 ```
 
-# Run the testsY
+# Run the tests
 You will need to start the Selenium Server first.
 In a separate terminal tab, run the following:
 
